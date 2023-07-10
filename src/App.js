@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { SendBirdProvider } from "sendbird-uikit";
+import "sendbird-uikit/dist/index.css";
+
+import { ChatAiWidget } from "@sendbird/chat-ai-widget";
+import "@sendbird/chat-ai-widget/dist/style.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SendBirdProvider
+        appId={process.env.REACT_APP_SENDBIRD_APP_ID}
+        userId={process.env.REACT_APP_SENDBIRD_USER_ID}
+        accessToken={process.env.REACT_APP_SENDBIRD_ACCESS_TOKEN}
+        theme="dark"
+      >
+        <ChatAiWidget
+          applicationId={process.env.REACT_APP_SENDBIRD_APP_ID}
+          botId="ChromaBot" // Your Bot ID
+        />
+      </SendBirdProvider>
     </div>
   );
 }
